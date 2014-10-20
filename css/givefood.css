@@ -12,27 +12,33 @@
     display: block;
     height: 240px;
     height: 15rem;
-    background-color: gray;
-    border-bottom: 5px solid black; }
+    background-image: url("../img/cans.jpeg");
+    border-bottom: 5px solid #F90012; }
   .main-container .main-form-container .school-form {
-    width: 320px;
-    width: 20rem;
-    height: 144px;
-    height: 9rem;
+    width: 240px;
+    width: 15rem;
+    height: 192px;
+    height: 12rem;
     margin: -40px auto 10px auto;
     padding: 20px;
-    background: lightgray;
+    background: #F90012;
     -webkit-border-radius: 8px;
     border-radius: 8px;
     background-clip: padding-box;
     /* stops bg color from leaking outside the border: */ }
+    .main-container .main-form-container .school-form h2 {
+      font-size: 16px;
+      font-size: 1rem;
+      color: #fff;
+      font-family: "Didact Gothic", sans-serif;
+      margin: 0; }
     .main-container .main-form-container .school-form ul {
       list-style-type: none;
       list-style-position: outside;
       margin: 0px;
       padding: 0px; }
     .main-container .main-form-container .school-form li {
-      padding: 12px;
+      padding: 12px 0;
       position: relative; }
     .main-container .main-form-container .school-form input {
       height: 40px;
@@ -41,15 +47,16 @@
       -webkit-border-radius: 5px;
       border-radius: 5px;
       background-clip: padding-box;
-      /* stops bg color from leaking outside the border: */ }
+      /* stops bg color from leaking outside the border: */
+      border: none; }
     .main-container .main-form-container .school-form .submit-button {
-      background-color: #68b12f;
-      border: 1px solid #509111;
-      border-bottom: 1px solid #5b992b;
-      color: white;
+      background-color: #AAF200;
+      color: #445B0D;
+      border: none;
       font-weight: bold;
       padding: 6px 20px;
-      text-align: center; }
+      text-align: center;
+      font-family: "Didact Gothic", sans-serif; }
   .main-container .main-schools-container {
     padding: 3%; }
     .main-container .main-schools-container:before, .main-container .main-schools-container:after {
@@ -57,9 +64,22 @@
       display: table; }
     .main-container .main-schools-container:after {
       clear: both; }
+    .main-container .main-schools-container .success-message h4 {
+      font-size: 24px;
+      font-size: 1.5rem;
+      color: #F90012;
+      font-family: "Didact Gothic", sans-serif;
+      text-align: center;
+      margin: 0; }
     .main-container .main-schools-container .school-result {
-      width: 33.3%;
+      width: 100%;
       float: left;
-      text-align: center; }
+      text-align: center;
+      font-family: "Didact Gothic", sans-serif; }
+      @media only screen and (min-width: 60em) {
+        .main-container .main-schools-container .school-result {
+          width: 33.33%; } }
+      .main-container .main-schools-container .school-result .school-name {
+        color: #F90012; }
 
 /*# sourceMappingURL=givefood.css.map */

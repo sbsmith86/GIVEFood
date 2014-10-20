@@ -30,28 +30,58 @@
   background-clip: padding-box;  /* stops bg color from leaking outside the border: */
 }
 
+@mixin bp-large {
+  @media only screen and (min-width: 60em) {
+    @content;
+  }
+}
+
+@mixin bp-medium {
+  @media only screen and (min-width: 40em) {
+    @content;
+  }
+}
+
+@mixin bp-small {
+  @media only screen and (min-width: 30em) {
+    @content;
+  }
+}
+
 /* ================
  *   Main Styles
  * ================
  */
+
+$red-color: #F90012;
+$green-color: #AAF200;
+$font: 'Didact Gothic', sans-serif;
+
 .main-container {
   position: relative;
  
   .main-background-image {
     display: block;
     @include rem(height,15);
-    background-color: gray;
-    border-bottom: 5px solid black;
+    // background-color: gray;
+    background-image: url('../img/cans.jpeg');
+    border-bottom: 5px solid $red-color;
   }
 
   .main-form-container {
     .school-form {
-      @include rem(width,20);
-      @include rem(height,9);
+      @include rem(width,15);
+      @include rem(height,12);
       margin: -40px auto 10px auto;
       padding: 20px;
-      background: lightgray;//#fff;
+      background: $red-color;
       @include border-radius(8px);
+      h2 {
+        @include rem(font-size,1);
+        color: #fff;
+        font-family: $font;
+        margin: 0;
+      }
       ul {
           list-style-type:none;
           list-style-position:outside;
@@ -59,7 +89,7 @@
           padding:0px;
       }
       li {
-          padding:12px; 
+          padding: 12px 0; 
           position:relative;
       }
       input {
@@ -67,15 +97,16 @@
         width: 100%;
         padding: 5px 8px;
         @include border-radius(5px);
+        border: none;
       }
       .submit-button {
-        background-color: #68b12f;
-        border: 1px solid #509111;
-        border-bottom: 1px solid #5b992b;
-        color: white;
+        background-color: $green-color;
+        color: #445B0D;
+        border: none;
         font-weight: bold;
         padding: 6px 20px;
         text-align: center;
+        font-family: $font;
       }
     }
   }
@@ -83,10 +114,24 @@
   .main-schools-container {
     @include clearfix();
     padding: 3%;
+    .success-message h4 {
+      @include rem(font-size,1.5);
+      color: $red-color;
+      font-family: $font;
+      text-align: center;
+      margin: 0;
+    }
     .school-result {
-      width: 33.3%;
+      width: 100%;
       float: left;
       text-align: center;
+      font-family: $font;
+      @include bp-large {
+        width: 33.33%;
+      }
+      .school-name {
+        color: $red-color;
+      }
     }
   }
 }

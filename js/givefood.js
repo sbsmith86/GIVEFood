@@ -64,13 +64,15 @@ var giveFood = (function () {
               });            
             });
 
-            // Loop through the top three results.
+            // Add a success message to the page.
+            $('.success-message').html('<h4>Sweet! We found some places you can give to:</h4>');
+            // Loop through the top three results and add them to the page.
             for ( var i = 0; i < 3; i++ ) {
               var $resultContainer = $('.school-result-' + i);
-
               $resultContainer.find('.school-name').html(finalResults[i].name);
               $resultContainer.find('.school-street').html(finalResults[i].street);
               $resultContainer.find('.school-city-state').html(finalResults[i].city + ', ' + finalResults[i].state + ', ' + finalResults[i].zip);
+              $resultContainer.find('.school-distance').html(Math.floor(finalResults[i].distance) + ' miles away');
               console.log(finalResults[i]);
             }
           } 
