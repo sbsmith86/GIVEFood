@@ -21,6 +21,7 @@ var giveFood = (function () {
   }
 
   var submitForm = function (zipCode) {
+    var $msgs = $('.success-message');
     // Submit AJAX request.
     $.ajax({
       type: "GET",
@@ -44,10 +45,6 @@ var giveFood = (function () {
               lon: results[0].geometry.location.lng(),
             },
             finalResults = [];
-            // // Store our results containers.
-            // $result1 = $('.school-result-1'),
-            // $result2 = $('.school-result-2'),
-            // $result3 = $('.school-result-3');
 
             // Loop through the school data and calculate the distance between the
             // zip code provided and each school on the list.
@@ -64,8 +61,9 @@ var giveFood = (function () {
               });            
             });
 
-            // Add a success message to the page.
-            $('.success-message').html('<h4>Sweet! We found some places you can give to:</h4>');
+            // Create a success message.
+            var successMessage = '<h4>Sweet! We found some places close by you can give to:</h4>';
+
             // Loop through the top three results and add them to the page.
             for ( var i = 0; i < 3; i++ ) {
               var $resultContainer = $('.school-result-' + i);
@@ -73,17 +71,24 @@ var giveFood = (function () {
               $resultContainer.find('.school-street').html(finalResults[i].street);
               $resultContainer.find('.school-city-state').html(finalResults[i].city + ', ' + finalResults[i].state + ', ' + finalResults[i].zip);
               $resultContainer.find('.school-distance').html(Math.floor(finalResults[i].distance) + ' miles away');
-              console.log(finalResults[i]);
+
+              // Check the distances on the results, if it is too far, then let the user know we couldn't find anything closer.
+              if (finalResults[i].distance > 60) {
+                successMessage = "<h4>There isn't a school near by but you can travel to any of these:</h4>"; 
+              }
             }
+
+            // Add the success message to the page.
+            $msgs.html(successMessage);
           } 
           else {
-            alert("Geocode was not successful for the following reason: " + status);
+            $msgs.html('<h4>Oh no! We had an issue finding your results. Please try again later.</h4>');
           }
       });
     })
     // Handle request errors.
     .fail(function(data) {
-      console.log(data);
+      $msgs.html('<h4>Oh no! We had an issue finding your results. Please try again later.</h4>');
     });
   };
   
