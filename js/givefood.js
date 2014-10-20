@@ -44,6 +44,7 @@ var giveFood = (function () {
               lat: results[0].geometry.location.lat(),
               lon: results[0].geometry.location.lng(),
             },
+            threshold = 60,
             finalResults = [];
 
             // Loop through the school data and calculate the distance between the
@@ -73,7 +74,7 @@ var giveFood = (function () {
               $resultContainer.find('.school-distance').html(Math.floor(finalResults[i].distance) + ' miles away');
 
               // Check the distances on the results, if it is too far, then let the user know we couldn't find anything closer.
-              if (finalResults[i].distance > 60) {
+              if (finalResults[i].distance >= threshold) {
                 successMessage = "<h4>There isn't a school near by but you can travel to any of these:</h4>"; 
               }
             }
