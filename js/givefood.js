@@ -64,7 +64,7 @@ var giveFood = (function () {
 
             // Create a success message.
             var successMessage = '<h4>Sweet! We found some places close by you can give to:</h4>';
-
+            
             // Loop through the top three results and add them to the page.
             for ( var i = 0; i < 3; i++ ) {
               var $resultContainer = $('.school-result-' + i);
