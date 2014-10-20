@@ -1,3 +1,92 @@
-h1 {
-  color: blue;
+/* ==========
+ *   Mixins
+ * ==========
+ */
+@mixin rem ($property, $value) {
+  #{$property}: $value * 16px;
+  #{$property}: #{$value}rem;
+}
+
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+/* ================
+ *   Main Styles
+ * ================
+ */
+.main-container {
+  position: relative;
+ 
+  .main-background-image {
+    display: block;
+    @include rem(height,15);
+    background-color: gray;
+    border-bottom: 5px solid black;
+  }
+
+  .main-form-container {
+    .school-form {
+      @include rem(width,20);
+      @include rem(height,9);
+      margin: -40px auto 10px auto;
+      padding: 20px;
+      background: lightgray;//#fff;
+      @include border-radius(8px);
+      ul {
+          list-style-type:none;
+          list-style-position:outside;
+          margin:0px;
+          padding:0px;
+      }
+      li {
+          padding:12px; 
+          position:relative;
+      }
+      input {
+        height: 40px; 
+        width: 100%;
+        padding: 5px 8px;
+        @include border-radius(5px);
+      }
+      .submit-button {
+        background-color: #68b12f;
+        border: 1px solid #509111;
+        border-bottom: 1px solid #5b992b;
+        color: white;
+        font-weight: bold;
+        padding: 6px 20px;
+        text-align: center;
+      }
+    }
+  }
+
+  .main-schools-container {
+    @include clearfix();
+    padding: 3%;
+    .school-result {
+      width: 33.3%;
+      float: left;
+      text-align: center;
+    }
+  }
 }

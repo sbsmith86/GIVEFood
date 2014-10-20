@@ -3,6 +3,7 @@
     <title>Page Title</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/givefood.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link href='http://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'>
   </head>
   <body>
@@ -10,26 +11,32 @@
       <section class="main-background-image">
       </section>
       <section class="main-form-container">
-        <form>
-          <input type="text" name="zip-code" placeholder="Zip Code" autofocus>
-          <input type="submit" value="Find a School">
+        <form class="school-form">
+          <ul>
+            <li>
+              <input type="text" name="zip-code" placeholder="Zip Code" autofocus>
+            </li>
+            <li>
+              <input type="submit" class="submit-button" value="Find a School">
+            </li>
+          </ul>
         </form>
       </section>
       <section class="main-schools-container">
-        <article>
-          <h3>School's name</h3>
-          <p>School's address 1</p>
-          <p>School's address 2</p>
+        <article class="school-result">
+          <h3 class="school-name">School's name</h3>
+          <p class="school-street">School's address 1</p>
+          <p class="school-city-state">School's address 2</p>
         </article>
-        <article>
-          <h3>School's name</h3>
-          <p>School's address 1</p>
-          <p>School's address 2</p>
+        <article class="school-result">
+          <h3 class="school-name">School's name</h3>
+          <p class="school-street">School's address 1</p>
+          <p class="school-city-state">School's address 2</p>
         </article>
-        <article>
-          <h3>School's name</h3>
-          <p>School's address 1</p>
-          <p>School's address 2</p>
+        <article class="school-result">
+          <h3 class="school-name">School's name</h3>
+          <p class="school-street">School's address 1</p>
+          <p class="school-city-state">School's address 2</p>
         </article>
       </section>
     </div>

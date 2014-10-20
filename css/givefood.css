@@ -1,4 +1,65 @@
-h1 {
-  color: blue; }
+/* ==========
+ *   Mixins
+ * ==========
+ */
+/* ================
+ *   Main Styles
+ * ================
+ */
+.main-container {
+  position: relative; }
+  .main-container .main-background-image {
+    display: block;
+    height: 240px;
+    height: 15rem;
+    background-color: gray;
+    border-bottom: 5px solid black; }
+  .main-container .main-form-container .school-form {
+    width: 320px;
+    width: 20rem;
+    height: 144px;
+    height: 9rem;
+    margin: -40px auto 10px auto;
+    padding: 20px;
+    background: lightgray;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */ }
+    .main-container .main-form-container .school-form ul {
+      list-style-type: none;
+      list-style-position: outside;
+      margin: 0px;
+      padding: 0px; }
+    .main-container .main-form-container .school-form li {
+      padding: 12px;
+      position: relative; }
+    .main-container .main-form-container .school-form input {
+      height: 40px;
+      width: 100%;
+      padding: 5px 8px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      background-clip: padding-box;
+      /* stops bg color from leaking outside the border: */ }
+    .main-container .main-form-container .school-form .submit-button {
+      background-color: #68b12f;
+      border: 1px solid #509111;
+      border-bottom: 1px solid #5b992b;
+      color: white;
+      font-weight: bold;
+      padding: 6px 20px;
+      text-align: center; }
+  .main-container .main-schools-container {
+    padding: 3%; }
+    .main-container .main-schools-container:before, .main-container .main-schools-container:after {
+      content: "";
+      display: table; }
+    .main-container .main-schools-container:after {
+      clear: both; }
+    .main-container .main-schools-container .school-result {
+      width: 33.3%;
+      float: left;
+      text-align: center; }
 
 /*# sourceMappingURL=givefood.css.map */
