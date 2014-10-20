@@ -1,22 +1,22 @@
 var giveFood = (function () {
-
+  // Implements the Haversine formula to calculate the distance between two points.
   function calculateDistance(p1, p2) {
       var erdRadius = 6371;
 
-      p1.lon = p1.lon * (Math.PI / 180);
-      p1.lat = p1.lat * (Math.PI / 180);
-      p2.lon = p2.lon * (Math.PI / 180);
-      p2.lat = p2.lat * (Math.PI / 180);
+      var 
+      p1Lon = p1.lon * (Math.PI / 180),
+      p1Lat = p1.lat * (Math.PI / 180),
+      p2Lon = p2.lon * (Math.PI / 180),
+      p2Lat = p2.lat * (Math.PI / 180);
 
-      var x0 = p1.lon * erdRadius * Math.cos(p1.lat);
-      var y0 = p1.lat * erdRadius;
+      var x0 = p1Lon * erdRadius * Math.cos(p1Lat);
+      var y0 = p1Lat * erdRadius;
 
-      var x1 = p2.lon * erdRadius * Math.cos(p2.lat);
-      var y1 = p2.lat * erdRadius;
+      var x1 = p2Lon * erdRadius * Math.cos(p2Lat);
+      var y1 = p2Lat * erdRadius;
 
       var dx = x0 - x1;
       var dy = y0 - y1;
-
       return Math.sqrt((dx * dx) + (dy * dy));
   }
 
@@ -32,26 +32,47 @@ var giveFood = (function () {
     })
     // Handle a successful request.
     .done(function(data) {
-      console.log(data);
-      // getLocation(zipCode);
-      // console.log(userLocation);
-
       // Get the users location based on the zip code they provided.
       geocoder.geocode({
         'address': zipCode
       }, function(results, status) {
           if (status === google.maps.GeocoderStatus.OK) {
-            // setLocation(results[0].geometry.location);
-            var zipLocation = {
+            var 
+            // Store long and lat in an object.
+            zipLocation = {
               lat: results[0].geometry.location.lat(),
               lon: results[0].geometry.location.lng(),
-            }
-            console.log("zipLocation");
-            console.log(zipLocation);
-            // Loop through the JSON data.
+            },
+            finalResults = [];
+            // // Store our results containers.
+            // $result1 = $('.school-result-1'),
+            // $result2 = $('.school-result-2'),
+            // $result3 = $('.school-result-3');
+
+            // Loop through the school data and calculate the distance between the
+            // zip code provided and each school on the list.
             $.each(data.results, function(key, value) {
-              console.log(calculateDistance(zipLocation, value));
+              // Calculate the distance.
+              distance = calculateDistance(zipLocation, value);
+              // Store the distance as a property of the result object.
+              value['distance'] = distance;
+              // Add it to an array.
+              finalResults.push(value);
+              // Sort the array in ascending order.
+              finalResults.sort(function(a, b) {
+                return a.distance - b.distance;
+              });            
             });
+
+            // Loop through the top three results.
+            for ( var i = 0; i < 3; i++ ) {
+              var $resultContainer = $('.school-result-' + i);
+
+              $resultContainer.find('.school-name').html(finalResults[i].name);
+              $resultContainer.find('.school-street').html(finalResults[i].street);
+              $resultContainer.find('.school-city-state').html(finalResults[i].city + ', ' + finalResults[i].state + ', ' + finalResults[i].zip);
+              console.log(finalResults[i]);
+            }
           } 
           else {
             alert("Geocode was not successful for the following reason: " + status);
